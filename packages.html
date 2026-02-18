@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Volumetria 3D • Embalagens</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Volumetria 3D</div>
+    <nav class="menu">
+      <a href="index.html">Carga</a>
+      <a href="packages.html" class="active">Embalagens</a>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section class="panel" style="min-width: 420px;">
+      <h2>Cadastrar Embalagem</h2>
+      <div class="grid-2">
+        <div class="field">
+          <label>Nome</label>
+          <input id="pkgName" placeholder="Ex.: Caixa 60x40x40" />
+        </div>
+        <div class="field">
+          <label>Peso por unidade (kg)</label>
+          <input id="pkgWeight" type="number" step="0.01" placeholder="Ex.: 10" />
+        </div>
+        <div class="field">
+          <label>Largura (m)</label>
+          <input id="pkgW" type="number" step="0.01" placeholder="0.60" />
+        </div>
+        <div class="field">
+          <label>Altura (m)</label>
+          <input id="pkgH" type="number" step="0.01" placeholder="0.40" />
+        </div>
+        <div class="field">
+          <label>Comprimento (m)</label>
+          <input id="pkgD" type="number" step="0.01" placeholder="0.40" />
+        </div>
+        <div class="field">
+          <label>Permite empilhar?</label>
+          <select id="pkgStackable">
+            <option value="true">Sim</option>
+            <option value="false">Não</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Permite rotação?</label>
+          <select id="pkgRot">
+            <option value="true">Sim</option>
+            <option value="false">Não</option>
+          </select>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="btnAddPkg" class="primary">Salvar embalagem</button>
+        <button id="btnReset" class="ghost">Limpar campos</button>
+      </div>
+
+      <h3>Embalagens cadastradas</h3>
+      <div id="pkgList" class="list"></div>
+
+      <hr />
+      <details>
+        <summary><strong>Gerenciar Veículos</strong></summary>
+        <div class="grid-2">
+          <div class="field">
+            <label>Nome</label>
+            <input id="vehName" placeholder="Ex.: Truck 3 eixos" />
+          </div>
+          <div class="field">
+            <label>Largura interna (m)</label>
+            <input id="vehW" type="number" step="0.01" />
+          </div>
+          <div class="field">
+            <label>Altura interna (m)</label>
+            <input id="vehH" type="number" step="0.01" />
+          </div>
+          <div class="field">
+            <label>Comprimento interno (m)</label>
+            <input id="vehD" type="number" step="0.01" />
+          </div>
+          <div class="field">
+            <label>Peso máx (t)</label>
+            <input id="vehT" type="number" step="0.01" />
+          </div>
+        </div>
+        <div class="actions">
+          <button id="btnAddVehicle" class="secondary">Adicionar veículo</button>
+        </div>
+        <div id="vehList" class="list"></div>
+      </details>
+    </section>
+
+    <section class="viewport center">
+      <div class="tip">
+        <h3>Dica</h3>
+        <p>Após cadastrar as embalagens, volte em <strong>Carga</strong> para montar o carregamento e visualizar em 3D.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="assets/app-common.js"></script>
+  <script src="assets/app-packages.js"></script>
+</body>
+</html>

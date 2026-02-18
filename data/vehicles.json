@@ -1,0 +1,22 @@
+[
+    {
+        "id": "id_ddeb7b13870ffdd0",
+        "nome": "CARRETA",
+        "interno": {
+            "largura": 2.44,
+            "altura": 3.5,
+            "comprimento": 14.6
+        },
+        "peso_max_t": 24
+    },
+    {
+        "id": "id_24540f323f8eb134",
+        "nome": "TRUCK",
+        "interno": {
+            "largura": 2.35,
+            "altura": 3.5,
+            "comprimento": 8.5
+        },
+        "peso_max_t": 12
+    }
+]

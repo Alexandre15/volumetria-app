@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Volumetria 3D • Planejador de Carga</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/styles.css" />
+
+  <!-- Import map: aponta 'three' para o arquivo local -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three.module.min.js"
+    }
+  }
+  </script>
+
+  <!-- Boot ESM (precisa rodar ANTES dos scripts não-modulares) -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from './vendor/OrbitControls.js';
+    import { TransformControls } from './vendor/TransformControls.js';
+
+    // expõe para scripts não-modulares (app-common.js / app-index.js)
+    window.THREE = THREE;
+    window.OrbitControls = OrbitControls;
+    window.TransformControls = TransformControls;
+
+    console.log('[BOOT] THREE/Orbit/Transform carregados:', !!window.THREE, !!window.OrbitControls, !!window.TransformControls);
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Volumetria 3D</div>
+    <nav class="menu">
+      <a href="index.html" class="active">Carga</a>
+      <a href="packages.html">Embalagens</a>
+    </nav>
+    <div class="spacer"></div>
+    <button id="btnSnapshot" class="ghost">Exportar imagem</button>
+    <button id="btnSaveLoad" class="ghost">Salvar carga</button>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <h2>Planejamento</h2>
+
+      <div class="field">
+        <label for="vehicleSelect">Veículo</label>
+        <select id="vehicleSelect"></select>
+      </div>
+
+      <details open>
+        <summary><strong>Adicionar item à carga</strong></summary>
+        <div class="grid-2">
+          <div class="field">
+            <label for="loadPkgSelect">Embalagem</label>
+            <select id="loadPkgSelect"></select>
+          </div>
+          <div class="field">
+            <label>Quantidade</label>
+            <input id="loadQty" type="number" min="1" value="1" />
+          </div>
+          <div class="field">
+            <label>Peso por unidade (kg)</label>
+            <input id="loadUnitWeight" type="number" step="0.01" placeholder="(opcional)" />
+          </div>
+          <div class="field">
+            <label>Empilhável?</label>
+            <select id="loadStackable">
+              <option value="inherit">Usar da embalagem</option>
+              <option value="true">Sim</option>
+              <option value="false">Não</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Permite rotação?</label>
+            <select id="loadRot">
+              <option value="inherit">Usar da embalagem</option>
+              <option value="true">Sim</option>
+              <option value="false">Não</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Empilhar obrigatoriamente sobre o mesmo tipo?</label>
+            <select id="loadMustSelf">
+              <option value="false">Não</option>
+              <option value="true">Sim</option>
+            </select>
+          </div>
+        </div>
+        <button id="btnAddLoad" class="primary">Adicionar</button>
+      </details>
+
+      <h3>Itens da Carga</h3>
+      <div id="loadList" class="list"></div>
+
+      <div class="actions">
+        <button id="btnClear" class="danger">Limpar carga</button>
+      </div>
+
+      <h3>Modo manual</h3>
+      <div class="list" style="gap:10px;">
+        <div class="field" style="display:flex; align-items:center; gap:10px;">
+          <input id="chkManual" type="checkbox"/>
+          <label for="chkManual" style="margin:0;">Editar no 3D (arrastar/rotacionar)</label>
+        </div>
+
+        <div class="actions" style="flex-wrap:wrap;">
+          <button id="btnFixLayout" class="secondary">Fixar layout atual para edição</button>
+          <label>Gizmo:
+            <select id="selGizmo">
+              <option value="translate">Mover</option>
+              <option value="rotateY">Rotacionar Y</option>
+            </select>
+          </label>
+          <label>Snap (cm):
+            <input id="snapCm" type="number" min="0" step="1" value="1" style="width:80px;" />
+          </label>
+          <button id="btnResetSel" class="ghost">Reset sel.</button>
+        </div>
+        <small class="muted">
+          Dica: clique em uma caixa para selecioná-la. No modo “Rotacionar Y”, o gizmo rotaciona a caixa no eixo vertical.
+        </small>
+      </div>
+
+      <div class="stats sticky">
+        <div><strong>Ocupação:</strong> <span id="statOcc">0%</span></div>
+        <div><strong>Volume usado:</strong> <span id="statVol">0 m³</span></div>
+        <div><strong>Volume veículo:</strong> <span id="statVolTot">0 m³</span></div>
+        <div><strong>Peso total:</strong> <span id="statWeight">0 kg</span></div>
+        <div><strong>Centro de massa (L):</strong> <span id="statCOM">0 m</span></div>
+      </div>
+    </section>
+
+    <section class="viewport">
+      <div id="threeRoot"></div>
+      <div id="threeError" class="warn hidden">
+        <p><strong>Three.js/OrbitControls/TransformControls não carregaram.</strong></p>
+        <p>Confirme os arquivos em <code>/vendor</code> e a ordem deste HTML.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <!-- ORDEM CRÍTICA: primeiro app-common.js (define Viz), depois app-index.js (usa Viz) -->
+  <script defer src="assets/app-common.js"></script>
+  <script defer src="assets/app-index.js"></script>
+</body>
+</html>

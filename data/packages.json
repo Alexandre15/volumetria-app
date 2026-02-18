@@ -1,0 +1,42 @@
+[
+    {
+        "id": "id_aff0ef230f0f80dc",
+        "nome": "CX12",
+        "peso_unitario": 60,
+        "largura": 1.2,
+        "altura": 0.65,
+        "comprimento": 0.85,
+        "empilhavel": true,
+        "rotacionar": true
+    },
+    {
+        "id": "id_7ed434d0bd6f0e41",
+        "nome": "CX15",
+        "peso_unitario": 40,
+        "largura": 0.75,
+        "altura": 0.7,
+        "comprimento": 0.77,
+        "empilhavel": true,
+        "rotacionar": true
+    },
+    {
+        "id": "id_00ae8ae07f8cad7c",
+        "nome": "CX23",
+        "peso_unitario": 50,
+        "largura": 1.2,
+        "altura": 0.46,
+        "comprimento": 0.7,
+        "empilhavel": true,
+        "rotacionar": true
+    },
+    {
+        "id": "id_bf126fd2ca1ebc44",
+        "nome": "RACK VALTRA",
+        "peso_unitario": 100,
+        "largura": 1.4,
+        "altura": 0.77,
+        "comprimento": 1.2,
+        "empilhavel": true,
+        "rotacionar": true
+    }
+]
