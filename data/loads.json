@@ -1,0 +1,24 @@
+[
+    {
+        "id": "id_f5082a51c30c2727",
+        "name": "Carga 17\/02\/2026, 23:17:05",
+        "vehicleId": "id_24540f323f8eb134",
+        "items": [
+            {
+                "packageId": "id_bf126fd2ca1ebc44",
+                "quantidade": 10,
+                "empilhavel": true,
+                "rotacionar": true,
+                "mustStackSelf": false
+            },
+            {
+                "packageId": "id_bf126fd2ca1ebc44",
+                "quantidade": 10,
+                "empilhavel": true,
+                "rotacionar": true,
+                "mustStackSelf": false
+            }
+        ],
+        "ts": "2026-02-18T02:17:08+00:00"
+    }
+]
